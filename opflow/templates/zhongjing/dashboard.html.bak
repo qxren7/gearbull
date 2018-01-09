@@ -1,0 +1,111 @@
+{% extends "fuxi_framework/framework_base.html" %}
+
+
+
+
+{% block content %}
+
+
+            <div class="row">
+                <div class="col-lg-6-full">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            机器online率 (计算公式: 非死机数/机器总数)
+                        </div>
+                        <!-- /.panel-heading -->
+                        <div class="panel-body">
+                            <div class="table-responsive">
+                                <table class="table table-striped table-bordered table-hover">
+                                    <thead>
+                                        <tr>
+                                            <th>app</th>
+                                            <th>日期</th>
+                                            <th>beijing</th>
+                                            <th>tucheng</th>
+                                            <th>hna</th>
+                                            <th>hnb</th>
+                                            <th>nanjing</th>
+                                            <th>hangzhou</th>
+                                            <th>shanghai</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {% for date, slis in host_slis_dict.items %}
+                                        <tr>
+                                            <td>
+                                            {% with slis|first as first_sli %}{{ first_sli.target }}{% endwith %}
+                                            </td>
+                                            <td>{{ date }}</td>
+                                            {% for sli in slis %}
+                                            <td> <a href="/zhongjing/query/deadhosts/{{sli.id}}/" data-toggle="tooltip" title="机器数({{sli.total_num  | stringformat:'d' }})台,点击查看死机列表" > {{ sli.rate}} </a>  </td>
+                                            {% endfor %}
+                                        </tr>
+                                        {% endfor %}
+                                    </tbody>
+                                </table>
+                            </div>
+                            <!-- /.table-responsive -->
+                        </div>
+                        <!-- /.panel-body -->
+                    </div>
+                    <!-- /.panel -->
+                </div>
+            </div>
+
+
+            <div class="row">
+                <div class="col-lg-6-full">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            服务存活率 (计算公式: running实例数/实例总数)
+                        </div>
+
+                        <!-- /.panel-heading -->
+                        <div class="panel-body">
+                            <div class="table-responsive">
+                                <table class="table table-striped table-bordered table-hover">
+                                    <thead>
+                                        <tr>
+                                            <th>app</th>
+                                            <th>日期</th>
+                                            <th>存活率</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {% for date, slis in service_sli_dict.items %}
+                                            {% for sli in slis %}
+                                            <tr>
+                                                <td>{{ sli.service }}</td>
+                                                <td>{{ date }}</td>
+                                                <td> <a href="/zhongjing/query/deadhosts/{{sli.id}}/" data-toggle="tooltip" title="实例数({{sli.total_num  | stringformat:'d' }}),点击查看异常实例列表" > {{ sli.rate}} </a>  </td>
+                                            </tr>
+                                            {% endfor %}
+                                        {% endfor %}
+                                    </tbody>
+                                </table>
+                            </div>
+                            <!-- /.table-responsive -->
+                        </div>
+                        <!-- /.panel-body -->
+
+
+                    </div>
+                    <!-- /.panel -->
+                </div>
+            </div>
+
+
+
+
+{% endblock %}
+
+
+{% block javascript_src %}
+
+<script>
+$(function () {
+    $('[data-toggle="tooltip"]').tooltip();
+});
+</script>
+
+{% endblock %}

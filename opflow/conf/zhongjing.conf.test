@@ -1,0 +1,112 @@
+[repair_threshold]
+#每个机房最大维修阈值
+cluster_beijing = 5
+cluster_nanjing = 5
+cluster_hangzhou = 1
+cluster_shanghai = 1
+cluster_tucheng = 1
+cluster_hna = 1
+cluster_hnb = 1
+cluster_all = 1
+
+#每个app最大维修阈值
+app_default = 1
+app_wwwac = 1
+app_wwwbs = 0
+app_wwwaladdin = 15
+app_wwwda = 0
+app_wwwtimeline = 2
+app_wwwqiandu = 0
+
+#每个app每个机房最大维修阈值
+app_wwwaladdin_per_cluster = 15
+
+# 带有以下tags的机器不维修
+tag_not_reapir = wwwmint_main
+
+[beehive]
+# www 机器tag 前缀
+main_tag_prefix = www
+# 阿拉丁服务app 前缀
+aladin_app_prefixs = ae-app,gssda,ala-root.www
+
+[repair_by_date]
+#根据日期来维修对应机房的机器
+# 周一, 维修bj
+0 = beijing,tucheng
+# 周二, 维修tc
+1 = tucheng
+# 周三, 维修nj
+2 = nanjing
+# 周四, 维修hz
+3 = hangzhou
+# 周五, 维修sh
+4 = shanghai
+# 周六, 维修hna
+5 = hna
+# 周日, 维修hnb
+6 = hnb
+
+[deploy_beehive_agent_threshold]
+#每个机房最大阈值
+cluster_beijing = 10
+cluster_nanjing = 25
+cluster_hangzhou = 10
+cluster_shanghai = 10
+cluster_tucheng = 10
+cluster_hna = 10
+cluster_hnb = 10
+cluster_all = 70
+
+
+[ultron]
+host_check_cycle_time = 60
+# 24 * 3600, 24小时
+host_repair_timeout = 86400
+# 3600 * 4, 4 小时
+host_reinstall_timeout = 21600
+# 3600 * 1, 1 小时
+deploy_beehive_agent_timeout =  3600
+# 300, 5 mins
+mount_to_beehive_node_timeout = 300
+
+
+[concurrency]
+# 机器维修并发度, 默认值 5
+ultron_repair_beehive_host_default = 1
+# 机器维修并发度, wwwbs 模块 5
+ultron_repair_beehive_host_wwwbs = 5
+# 机器维修并发度, wwwac 模块 1
+ultron_repair_beehive_host_wwwac = 1
+# 机器维修并发度, wwwda 模块 1
+ultron_repair_beehive_host_wwwda = 1
+
+# 机器重装并发度, 默认值 20
+ultron_reinstall_beehive_host_default = 5
+ultron_reinstall_beehive_host_wwwbs = 20
+ultron_reinstall_beehive_host_wwwac = 5
+ultron_reinstall_beehive_host_wwwda = 5
+
+# alading 机器重装并发度, 默认值 5
+repair_alading_host_default = 5
+
+# fake_operate(假任务接口，测试用) 并发度, 默认值 50
+fake_operate_default = 20
+fake_operate_wwwbs = 20
+fake_operate_wwwac = 20
+fake_operate_wwwda = 20
+
+archer_deploy_beehive_agent_default = 100
+
+bns_mount_host_to_beehive_agent_node_default = 200
+
+
+[beehive_agent_services]
+hna = agent1.www.hna
+hnb = agent.www.hnb
+hangzhou = agent1.www.hz
+beijing = agent1.www.jx
+nanjing = agent1.www.nj
+tucheng = agent1.www.tc
+shanghai = agent.www.sh01
+
