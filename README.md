@@ -14,6 +14,7 @@ Featres:
 
 
 
+
 如何安装？
 
 1、安装 python36、 pip3
@@ -68,7 +69,11 @@ webserver                        RUNNING   pid 4145, uptime 0:00:06
 
 
 
+
+
+
 如何使用？
+
 0. 查看当前有哪些任务工作流
 curl 'http://127.0.0.1:8088/workflow/api/flows/' 
 
@@ -94,7 +99,9 @@ curl 'http://127.0.0.1:8088/workflow/actions/89/'
 curl 'http://127.0.0.1:8088/workflow/api/show_flow/?job_id=1'   
 
 6.定义自己的工作流
-     a、cd /home/work/gearbull 
+
+    a、cd /home/work/gearbull 
+
     b、在 data/plugins 下，cp example_tasks.py  your_tasks.py 
 
     c、编辑 conf/task_trees.py, 增加 trees定义:
