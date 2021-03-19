@@ -1,6 +1,6 @@
 Django==2.2.6
 django-picklefield==2.0
-djangorestframework==3.10.3
+djangorestframework==3.11.2
 jsonfield==2.0.2
 mysqlclient==1.4.5
 pickleshare==0.7.5
